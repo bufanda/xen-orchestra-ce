@@ -10,7 +10,9 @@ WORKDIR /home/node
 #fix error - url loader
 RUN npm install url-loader --save-dev
 # Clone git and remove .git
-RUN git clone -b master --depth 1 https://github.com/vatesfr/xen-orchestra/
+RUN git clone https://github.com/vatesfr/xen-orchestra/ && \
+    cd /home/node/xen-orchestra && \
+    git checkout 1221b23edffb1baf4f1e5d047b299ce075e34c54
 # patches
 COPY patches /home/node/xen-orchestra/patches
 RUN cd /home/node/xen-orchestra \
