@@ -12,7 +12,7 @@ RUN npm install url-loader --save-dev
 # Clone git and remove .git
 RUN git clone https://github.com/vatesfr/xen-orchestra/ && \
     cd /home/node/xen-orchestra && \
-    git checkout 1221b23edffb1baf4f1e5d047b299ce075e34c54
+    git checkout 009c0ea6b57fb41f3b0a0d5806e1ac05466f3275
 # patches
 COPY patches /home/node/xen-orchestra/patches
 RUN cd /home/node/xen-orchestra \
