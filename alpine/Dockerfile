@@ -22,6 +22,9 @@ WORKDIR /home/node/xen-orchestra
 RUN yarn config set network-timeout 300000
 RUN yarn
 RUN yarn build
+## Build XO 6
+# access later with http(s)://<xo-host>/v6 
+RUN yarn run turbo run build --filter @xen-orchestra/web
 
 ## Cleanup .git folder
 RUN rm -rf /home/node/xen-orchestra/.git
