@@ -15,12 +15,16 @@ RUN git clone -b master --depth 1 https://github.com/vatesfr/xen-orchestra/
 COPY patches /home/node/xen-orchestra/patches
 RUN cd /home/node/xen-orchestra \
     && git apply patches/gh_issue_redirect.diff \
-    && rm -rf /home/node/xen-orchestra/.git /home/node/xen-orchestra/patches
+    && rm -rf /home/node/xen-orchestra/patches
+
 # build
 WORKDIR /home/node/xen-orchestra
 RUN yarn config set network-timeout 300000
 RUN yarn
 RUN yarn build
+
+## Cleanup .git folder
+RUN rm -rf /home/node/xen-orchestra/.git
 
 ##  ~ Experimental ~
 # clean node_modules steps
