@@ -1,5 +1,5 @@
 ## Use same builder image for XOA & libvhdi
-FROM node:20.18-alpine3.21 as builder
+FROM node:22.22-alpine3.23 as builder
 RUN apk add --no-cache git python3 g++ make bash fuse fuse-dev fuse3 fuse3-dev curl libc6-compat \
  automake autoconf libtool gettext-dev pkgconf fuse-dev fuse
 
@@ -50,13 +50,13 @@ RUN ./configure
 RUN make -j $(nproc) && make install
 
 # REMCO
-FROM golang:alpine3.21 as build-remco
+FROM golang:alpine3.23 as build-remco
 
 RUN apk add --no-cache git
 RUN go install github.com/HeavyHorst/remco/cmd/remco@latest
 
 # Runner container
-FROM alpine:3.21
+FROM alpine:3.23
 
 ARG VERSION=latest
 ARG XOSERVER=latest
